@@ -1,0 +1,19 @@
+{
+  "name": "travel-agency",
+  "version": "1.0.0",
+  "description": "------------- Agência de viagens -------------",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffgabriiel/travel-agency.git"
+  },
+  "author": "jeffgabriiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffgabriiel/travel-agency/issues"
+  },
+  "homepage": "https://github.com/jeffgabriiel/travel-agency#readme"
+}
