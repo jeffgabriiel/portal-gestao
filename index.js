@@ -9,7 +9,10 @@ app.listen(5000,() => {
     console.log("servindo");
 });
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.use('/public', express.static(path.join(__dirname, 'public'))); //conectar com a pasta ublic
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname+'/views/index.html'));
+    res.render(path.join(__dirname+'/views/index.html'));
 })
