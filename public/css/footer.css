@@ -1,0 +1,17 @@
+footer{
+    width: 100%;
+    height: var(--tamanho-height-header);
+    justify-content: space-around;
+    background-color: var(--header-color);
+    bottom: 0;
+    left: 0;
+}
+
+footer h1{
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0.75;
+    color: #FFFFFF;
+}
