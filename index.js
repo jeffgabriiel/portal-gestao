@@ -16,3 +16,4 @@ app.use('/public', express.static(path.join(__dirname, 'public'))); //conectar c
 app.get('/', (req, res) => {
     res.render(path.join(__dirname+'/views/index.html'));
 })
+
