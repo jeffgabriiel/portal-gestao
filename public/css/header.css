@@ -12,12 +12,6 @@ body{
     background-size: cover;
 }
 
-:root{
-    --header-color: #52a9fa;
-    --tamanho-height-header: 70px;
-    --color-violeta: ;
-}
-
 header{
     width: auto;
     height: var(--tamanho-height-header);
