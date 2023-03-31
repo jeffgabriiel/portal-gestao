@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const port = 5000;
 
-const routes = require('./routes');
+const routes = require('./routes/routes');
 
 app.listen(port,() => {
     console.log("servindo na porta " + port);
