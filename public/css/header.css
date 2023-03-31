@@ -31,7 +31,7 @@ div.header{
     align-items: center;
     padding: 20px;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #000;
     font-size: 18px;
 }
 
@@ -48,6 +48,6 @@ div.logo{
 div.perfil a{
     text-align: left;
     text-decoration: none;
-    color: #FFFFFF;
+    color: rgb(0, 107, 230);
     font-size: 18px;
 }
