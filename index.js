@@ -7,10 +7,7 @@ const fs = require('fs');
 const port = 5000;
 
 const routes = require('./routes/routes.js');
-
-app.listen(port,() => {
-    console.log("servindo na porta " + port);
-});
+const e = require('express');
 
 app.engine('html', require('ejs').renderFile); // Template Engine  //MUDAR PARA handlebars
 app.set('view engine', 'html'); // Template Engine
@@ -22,3 +19,22 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+const mysql = require('mysql'); // conecção ao database MySQL
+const conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'travelagency',
+});
+
+conn.connect((err) => {
+    if(err){
+        console.log(err);
+    }
+
+    console.log('conectado aomysql');
+
+    app.listen(port,() => {
+        console.log("servindo na porta " + port);
+    });
+})
