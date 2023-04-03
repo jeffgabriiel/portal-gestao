@@ -6,17 +6,15 @@ const path = require('path');
 const fs = require('fs');
 const port = 5000;
 
-const routes = require('./routes/routes');
+const routes = require('./routes/routes.js');
 
 app.listen(port,() => {
     console.log("servindo na porta " + port);
 });
 
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile); // Template Engine  //MUDAR PARA handlebars
+app.set('view engine', 'html'); // Template Engine
 app.use('/public', express.static(path.join(__dirname, 'public'))); //conectar com a pasta public
-
-const basePath = path.join(__dirname, 'views');
 
 app.use('/', routes);
 
