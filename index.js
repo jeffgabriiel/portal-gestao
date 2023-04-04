@@ -15,7 +15,7 @@ app.use('/public', express.static(path.join(__dirname, 'public'))); //conectar c
 
 app.use('/', routes);
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { // rota index fora do arquivo routes/routes.js
     res.render('index');
 })
 
@@ -24,7 +24,7 @@ const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'travelagency',
+    database: 'travelagency', // nome do database no mysql
 });
 
 conn.connect((err) => {
@@ -32,9 +32,10 @@ conn.connect((err) => {
         console.log(err);
     }
 
-    console.log('conectado aomysql');
+    console.log('conectado ao mysql');
 
     app.listen(port,() => {
         console.log("servindo na porta " + port);
     });
-})
+});
+
