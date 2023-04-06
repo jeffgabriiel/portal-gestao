@@ -23,24 +23,28 @@ router.post('/login/insertLogin', (req, res) => {
         if (err) {
             console.log(err);
         }
-        res.redirect('/');
+        res.redirect('/users');
     });
 });
-/*
-router.get('/hoteis', (req, res) => {
-    res.render('passagens')
+router.get('/users', (req, res) => {
+    const read = `SELECT * FROM users`;
+    connection.query(read, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        const users = data;
+        res.render('users', { users });
+    });
 });
-
-router.get('/carros', (req, res) => {
-    res.render('passagens')
+router.get('/users/:id', (req, res) => {
+    const id = req.params.id;
+    const read = `SELECT * FROM users WHERE id = ${id}`;
+    connection.query(read, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        const users = data[0];
+        res.render('usersID', { users });
+    });
 });
-
-router.get('/lugares', (req, res) => {
-    res.render('passagens')
-});
-
-router.get('/contato', (req, res) => {
-    res.render('passagens')
-});
-*/
 module.exports = router;
