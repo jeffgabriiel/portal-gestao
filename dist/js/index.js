@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
-const bodyParser = require("body-parser");
 const path = require('path');
 const fs = require('fs');
 const port = 5000;
+// pegar o body
+app.use(express.urlencoded({
+    extended: true,
+}));
+app.use(express.json());
 app.engine('html', require('ejs').renderFile); // Template Engine  //MUDAR PARA handlebars
 app.set('view engine', 'html'); // Template Engine
 app.use('/public', express.static(path.join(__dirname, '../../public'))); //conectar com a pasta public
@@ -16,7 +20,7 @@ const mysql = require('mysql'); // conecção ao database MySQL
 const conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'jeff1238',
     database: 'travelagency', // nome do database no mysql
 });
 conn.connect((err) => {
