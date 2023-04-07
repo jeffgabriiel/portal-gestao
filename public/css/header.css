@@ -15,7 +15,7 @@ header{
     width: auto;
     height: var(--tamanho-height-header);
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 15% 70% 15%;
     align-items: center;
     justify-content: space-around;
     background-color: var(--header-color);

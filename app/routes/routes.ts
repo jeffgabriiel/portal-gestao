@@ -18,11 +18,11 @@ router.get('/passagens', (req, res) => {
     res.render('passagens');
 });
 
-router.get('/login', (req, res) => {
-    res.render('login');
+router.get('/register', (req, res) => {
+    res.render('register');
 });
 
-router.post('/login/insertLogin', (req, res) => { //inserir dados no database
+router.post('/register/insertRegister', (req, res) => { //inserir dados no database
     const email = req.body.email;
     const password = req.body.password;
 

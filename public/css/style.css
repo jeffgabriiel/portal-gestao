@@ -67,6 +67,7 @@ div.cardTravel{
 }
 
 .bodyTravel{
+    margin-top: 3.5px;
     background-color: var(--background-opacity);
     padding: 10px;
     border-radius: 0 10px 10px 10px;

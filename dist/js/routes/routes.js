@@ -12,10 +12,10 @@ const connection = require('mysql').createConnection({
 router.get('/passagens', (req, res) => {
     res.render('passagens');
 });
-router.get('/login', (req, res) => {
-    res.render('login');
+router.get('/register', (req, res) => {
+    res.render('register');
 });
-router.post('/login/insertLogin', (req, res) => {
+router.post('/register/insertRegister', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const insert = `INSERT INTO users (email, password) VALUES ('${email}', '${password}')`;
