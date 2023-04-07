@@ -21,9 +21,11 @@ router.post('/register/insertRegister', (req, res) => { //inserir dados no datab
     const email = req.body.email;
     const password = req.body.password;
 
-    const insert = `INSERT INTO users (email, password) VALUES ('${email}', '${password}')`;
+    // usando queries
+    const insert = `INSERT INTO users (??, ??) VALUES (?, ?)`; // ?? = coluna ; ? = dados
+    const data = ['email', 'password', email, password];
 
-    connectionPool.query(insert, (err) => {
+    connectionPool.query(insert, data, (err) => {
         if(err){
             console.log(err);
         }
@@ -44,9 +46,13 @@ router.get('/users', (req, res) => { // lendo dados do banco de dados MySQL
 });
 
 router.get('/users/:id', (req, res) => { // filtrando dados do banco de dados MySQL com o ID especifico
-    const id = req.params.id;  
-    const read = `SELECT * FROM users WHERE id = ${id}`;
-    connectionPool.query(read, (err, data) => {
+    const id = req.params.id; 
+
+    // usando queries
+    const read = `SELECT * FROM users WHERE ?? = ?`;// ?? = coluna ; ? = dados
+    const data = ['id', id];
+
+    connectionPool.query(read, data, (err, data) => {
         if(err){
             console.log(err);
         }
@@ -57,8 +63,12 @@ router.get('/users/:id', (req, res) => { // filtrando dados do banco de dados My
 
 router.get('/users/edit/:id', (req, res) => { // view do editando dados do banco de dados MySQL com o ID especifico
     const id = req.params.id;  
-    const edit = `SELECT * FROM users WHERE id = ${id}`;
-    connectionPool.query(edit, (err, data) => {
+
+    // usando queries
+    const edit = `SELECT * FROM users WHERE ?? = ?`;// ?? = coluna ; ? = dados
+    const data = ['id', id];
+
+    connectionPool.query(edit, data, (err, data) => {
         if(err){
             console.log(err);
         }
@@ -70,8 +80,12 @@ router.post('/users/edit', (req, res) => { // editando dados do banco de dados M
     const id = req.body.id;  
     const email = req.body.email;
     const password = req.body.password;
-    const edit = `UPDATE users SET email = '${email}', password = '${password}' WHERE id = ${id}`;
-    connectionPool.query(edit, (err) => {
+
+    // usando queries
+    const edit = `UPDATE users SET ?? = ?, ?? = ? WHERE ?? = ?`;// ?? = coluna ; ? = dados
+    const data = ['email', email, 'password', password, 'id', id];
+
+    connectionPool.query(edit, data, (err) => {
         if(err){
             console.log(err);
         }
@@ -81,8 +95,12 @@ router.post('/users/edit', (req, res) => { // editando dados do banco de dados M
 
 router.post('/users/delete/:id', (req, res) => { // deletadno dados do banco de dados MySQL com o ID especifico
     const id = req.params.id; 
-    const sql = `DELETE FROM users WHERE id = ${id}`;
-    connectionPool.query(sql, (err) => {
+
+    // usando queries
+    const sql = `DELETE FROM users WHERE ?? = ?`;// ?? = coluna ; ? = dados
+    const data = ['id', id];
+
+    connectionPool.query(sql, data, (err) => {
         if(err){
             console.log(err);
         }
