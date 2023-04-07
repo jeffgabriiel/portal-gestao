@@ -70,4 +70,14 @@ router.post('/users/edit', (req, res) => {
         res.redirect('/users');
     });
 });
+router.post('/users/delete/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = `DELETE FROM users WHERE id = ${id}`;
+    connection.query(sql, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect('/users');
+    });
+});
 module.exports = router;

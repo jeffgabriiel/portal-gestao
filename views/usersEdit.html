@@ -16,5 +16,9 @@
         <input type="text" id="lname" name="password"value="<%- users.password %>"><br><br>
         <input type="submit" value="Editar">
     </form> 
+
+    <form action="/users/delete/<%- users.id %>" method="POST"> <!-- não pode ficar no mesmo form de editar -->
+        <input type="submit" value="Remover">
+    </form>
 </body>
 </html>

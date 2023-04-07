@@ -21,7 +21,7 @@ app.use('/', routes);
 
 app.get('/', (req, res) => {
     res.render('index');
-})
+});
 
 const mysql = require('mysql'); // conecção ao database MySQL
 const conn = mysql.createConnection({

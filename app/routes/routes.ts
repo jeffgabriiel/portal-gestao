@@ -83,4 +83,16 @@ router.post('/users/edit', (req, res) => { // editando dados do banco de dados M
         res.redirect('/users')
     });
 });
+
+router.post('/users/delete/:id', (req, res) => { // deletadno dados do banco de dados MySQL com o ID especifico
+    const id = req.params.id; 
+    const sql = `DELETE FROM users WHERE id = ${id}`;
+    connection.query(sql, (err) => {
+        if(err){
+            console.log(err);
+        }
+        res.redirect('/users')
+    });
+});
+
 module.exports = router;

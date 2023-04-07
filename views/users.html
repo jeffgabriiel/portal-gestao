@@ -13,7 +13,7 @@
     <ul>
         <% for(var i=0; i<users.length; i++) {%>
             <li>
-                Email: <%= users[i].email %>
+                Email: <%= users[i].email %> <a href="/users/edit/<%- users[i].id %>">Edit</a>
             </li>
         <% } %>
     </ul>
