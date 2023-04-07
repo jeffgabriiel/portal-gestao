@@ -16,19 +16,6 @@ app.use('/', routes);
 app.get('/', (req, res) => {
     res.render('index');
 });
-const mysql = require('mysql'); // conecção ao database MySQL
-const conn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'jeff1238',
-    database: 'travelagency', // nome do database no mysql
-});
-conn.connect((err) => {
-    if (err) {
-        console.log(err);
-    }
-    console.log('conectado ao mysql');
-    app.listen(port, () => {
-        console.log("servindo na porta " + port);
-    });
+app.listen(port, () => {
+    console.log("servindo na porta " + port);
 });

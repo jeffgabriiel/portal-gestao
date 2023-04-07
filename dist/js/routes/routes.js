@@ -1,14 +1,9 @@
 const router = require('express').Router();
+const connectionPool = require('../database/connection');
 require('express')().use(require('express').urlencoded({
     extended: true,
 }));
 require('express')().use(require('express').json());
-const connection = require('mysql').createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'jeff1238',
-    database: 'travelagency',
-});
 router.get('/passagens', (req, res) => {
     res.render('passagens');
 });
@@ -19,7 +14,7 @@ router.post('/register/insertRegister', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const insert = `INSERT INTO users (email, password) VALUES ('${email}', '${password}')`;
-    connection.query(insert, (err) => {
+    connectionPool.query(insert, (err) => {
         if (err) {
             console.log(err);
         }
@@ -28,7 +23,7 @@ router.post('/register/insertRegister', (req, res) => {
 });
 router.get('/users', (req, res) => {
     const read = `SELECT * FROM users`;
-    connection.query(read, (err, data) => {
+    connectionPool.query(read, (err, data) => {
         if (err) {
             console.log(err);
         }
@@ -39,7 +34,7 @@ router.get('/users', (req, res) => {
 router.get('/users/:id', (req, res) => {
     const id = req.params.id;
     const read = `SELECT * FROM users WHERE id = ${id}`;
-    connection.query(read, (err, data) => {
+    connectionPool.query(read, (err, data) => {
         if (err) {
             console.log(err);
         }
@@ -50,7 +45,7 @@ router.get('/users/:id', (req, res) => {
 router.get('/users/edit/:id', (req, res) => {
     const id = req.params.id;
     const edit = `SELECT * FROM users WHERE id = ${id}`;
-    connection.query(edit, (err, data) => {
+    connectionPool.query(edit, (err, data) => {
         if (err) {
             console.log(err);
         }
@@ -63,7 +58,7 @@ router.post('/users/edit', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const edit = `UPDATE users SET email = '${email}', password = '${password}' WHERE id = ${id}`;
-    connection.query(edit, (err) => {
+    connectionPool.query(edit, (err) => {
         if (err) {
             console.log(err);
         }
@@ -73,7 +68,7 @@ router.post('/users/edit', (req, res) => {
 router.post('/users/delete/:id', (req, res) => {
     const id = req.params.id;
     const sql = `DELETE FROM users WHERE id = ${id}`;
-    connection.query(sql, (err) => {
+    connectionPool.query(sql, (err) => {
         if (err) {
             console.log(err);
         }
