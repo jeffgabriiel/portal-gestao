@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const port = 5000;
 
+const UserModel = require('./models/User');
+
 // pegar o body
 app.use(
     express.urlencoded({
@@ -23,6 +25,8 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-app.listen(port,() => {
-    console.log("servindo na porta " + port);
-});
+require('./database/connection').sync().then(() => { //
+    app.listen(port,() => {
+        console.log("servindo na porta " + port);
+    });
+}).catch((err) => { console.log(err) });

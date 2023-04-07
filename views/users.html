@@ -13,8 +13,13 @@
     <ul>
         <% for(var i=0; i<users.length; i++) {%>
             <li>
-                Email: <%= users[i].email %> <a href="/users/edit/<%- users[i].id %>">Edit</a>
+                Nome: <%= users[i].name %> 
+                <br>
+                Email: <%= users[i].email %> 
+                <br>
+                <a href="/users/edit/<%- users[i].id %>">Edit</a>
             </li>
+            <br><br>
         <% } %>
     </ul>
     <%- include('templates/footer.html') %> <!-- ejs -->
