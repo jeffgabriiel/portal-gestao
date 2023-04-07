@@ -44,7 +44,7 @@ router.get('/users', (req, res) => { // lendo dados do banco de dados MySQL
             console.log(err);
         }
         const users = data;
-        res.render('users', {users})
+        res.render('users', { users })
     });
 });
 
@@ -56,8 +56,31 @@ router.get('/users/:id', (req, res) => { // filtrando dados do banco de dados My
             console.log(err);
         }
         const users = data[0];
-        res.render('usersID', {users})
+        res.render('usersID', { users })
     });
 });
 
+router.get('/users/edit/:id', (req, res) => { // view do editando dados do banco de dados MySQL com o ID especifico
+    const id = req.params.id;  
+    const edit = `SELECT * FROM users WHERE id = ${id}`;
+    connection.query(edit, (err, data) => {
+        if(err){
+            console.log(err);
+        }
+        const users = data[0];
+        res.render('usersEdit', { users })
+    });
+});
+router.post('/users/edit', (req, res) => { // editando dados do banco de dados MySQL com o ID especifico
+    const id = req.body.id;  
+    const email = req.body.email;
+    const password = req.body.password;
+    const edit = `UPDATE users SET email = '${email}', password = '${password}' WHERE id = ${id}`;
+    connection.query(edit, (err) => {
+        if(err){
+            console.log(err);
+        }
+        res.redirect('/users')
+    });
+});
 module.exports = router;

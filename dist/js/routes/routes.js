@@ -47,4 +47,27 @@ router.get('/users/:id', (req, res) => {
         res.render('usersID', { users });
     });
 });
+router.get('/users/edit/:id', (req, res) => {
+    const id = req.params.id;
+    const edit = `SELECT * FROM users WHERE id = ${id}`;
+    connection.query(edit, (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        const users = data[0];
+        res.render('usersEdit', { users });
+    });
+});
+router.post('/users/edit', (req, res) => {
+    const id = req.body.id;
+    const email = req.body.email;
+    const password = req.body.password;
+    const edit = `UPDATE users SET email = '${email}', password = '${password}' WHERE id = ${id}`;
+    connection.query(edit, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect('/users');
+    });
+});
 module.exports = router;

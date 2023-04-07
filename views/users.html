@@ -8,20 +8,15 @@
     <title>Users</title>
 </head>
 <body>
-
     <%- include('templates/header.html') %> <!-- ejs -->
     <h1>users</h1>
-
     <ul>
-
         <% for(var i=0; i<users.length; i++) {%>
             <li>
                 Email: <%= users[i].email %>
             </li>
         <% } %>
-
     </ul>
-
     <%- include('templates/footer.html') %> <!-- ejs -->
 </body>
 </html>

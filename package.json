@@ -32,7 +32,8 @@
     "mongoose": "^7.0.3",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.22",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "puppeteer": "^19.8.5"
   },
   "devDependencies": {
     "lite-server": "^2.6.1",
