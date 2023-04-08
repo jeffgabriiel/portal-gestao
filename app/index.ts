@@ -4,8 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const port = 5000;
 
-const UserModel = require('./models/User');
-const Ticket = require('./models/Ticket');
+require('./models/User');
+require('./models/Ticket');
 
 // pegar o body
 app.use(
