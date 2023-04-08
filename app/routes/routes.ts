@@ -1,6 +1,6 @@
 const router = require('express').Router();
-
 const connection = require('../database/connection');
+const ticket = require('../models/Ticket');
 
 require('express')().use(
     require('express').urlencoded({

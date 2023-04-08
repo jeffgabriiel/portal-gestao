@@ -1,4 +1,4 @@
-/*
+/* // conecção ao mysql pura
 const mysql = require('mysql'); // conecção ao database MySQL
 
 const pool = mysql.createPool({
@@ -10,6 +10,7 @@ const pool = mysql.createPool({
 });
 module.exports = pool;
 */
+//conecção usando o sequelize
 const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('travelagency', 'root', 'jeff1238', {
     host: 'localhost',

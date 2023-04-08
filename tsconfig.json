@@ -4,6 +4,7 @@
         "target": "ES6", 
         "noEmitOnError": true,
         "moduleResolution":"node",
+        "lib": ["es6"]
     }, 
     "include": ["app/**/*", "dist/js/models/negociacao.ts", "app/index.ts"]
 }

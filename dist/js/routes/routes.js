@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const router = require('express').Router();
 const connection = require('../database/connection');
+const ticket = require('../models/Ticket');
 require('express')().use(require('express').urlencoded({
     extended: true,
 }));
