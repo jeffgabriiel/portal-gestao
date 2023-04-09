@@ -148,4 +148,4 @@ router.post('/users/delete/:id', async (req, res) => { // deletadno dados do ban
     */
 });
 
-module.exports = router;
+module.exports = router; /// usar module.exports em vez de export {} pois precis exportar o módulo router
