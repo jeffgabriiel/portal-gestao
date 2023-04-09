@@ -139,4 +139,4 @@ router.post('/users/delete/:id', (req, res) => __awaiter(this, void 0, void 0, f
     });
     */
 }));
-module.exports = router;
+module.exports = router; /// usar module.exports em vez de export {} pois precis exportar o módulo router
