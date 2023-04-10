@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fs = require('fs');
 const port = 5000;
 
 require('./models/User');
@@ -17,6 +16,7 @@ app.use(express.json());
 
 app.engine('html', require('ejs').renderFile); // Template Engine  //MUDAR PARA handlebars
 app.set('view engine', 'html'); // Template Engine
+
 app.use('/public', express.static(path.join(__dirname, '../../public'))); //conectar com a pasta public
 
 const routes = require('./routes/routes');

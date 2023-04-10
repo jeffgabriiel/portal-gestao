@@ -11,7 +11,7 @@ module.exports = require('../database/connection').define('Ticket', {
         require: true,
     },
     preco: {
-        type: require('sequelize').FLOAT,
+        type: require('sequelize').STRING,
         allowNull: false,
         require: true,
     },

@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const fs = require('fs');
 const port = 5000;
 require('./models/User');
 require('./models/Ticket');

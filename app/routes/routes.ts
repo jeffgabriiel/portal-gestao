@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const connection = require('../database/connection');
 const ticket = require('../models/Ticket');
+const handlebars = require('handlebars');
 
 require('express')().use(
     require('express').urlencoded({
@@ -113,7 +114,7 @@ router.post('/users/edit', async (req, res) => { // editando dados do banco de d
         email, 
         password,
     }
-    const users = await require('../models/User').update(userData, {  raw: true, where: { id: id } });
+    await require('../models/User').update(userData, {  raw: true, where: { id: id } });
     res.redirect('/users');
     /*
     // usando queries
