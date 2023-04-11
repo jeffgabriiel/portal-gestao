@@ -1,14 +1,19 @@
-const router = require('express').Router();
-const connection = require('../database/connection');
-const ticket = require('../models/Ticket');
-const handlebars = require('handlebars');
+import '../database/connection.js'
+import Router from 'express';
+const router = Router();
 
-require('express')().use(
-    require('express').urlencoded({
+import express from 'express';
+const app = express();
+
+import User from '../models/User.js';
+import Ticket from '../models/Ticket.js'
+
+app.use(
+    express.urlencoded({
         extended: true,
     }),
 );
-require('express')().use(require('express').json());
+app.use(express.json());
 
 router.get('/passagens', (req, res) => {
     res.render('passagens');
@@ -25,7 +30,7 @@ router.post('/register/insertRegister', async (req, res) => { //inserir dados no
     const email = req.body.email;
     const password = req.body.password;
 
-    await require('../models/User').create({ name, email, password });
+    await User.create({ name, email, password });
 
     res.redirect('/users');
 
@@ -46,7 +51,7 @@ router.post('/register/insertRegister', async (req, res) => { //inserir dados no
 
 router.get('/users', async (req, res) => { // lendo dados do banco de dados MySQL
     // com sequelize
-    const users = await require('../models/User').findAll({ raw: true });
+    const users = await User.findAll({ raw: true });
     res.render('users', { users: users });
 
     /*
@@ -64,7 +69,7 @@ router.get('/users', async (req, res) => { // lendo dados do banco de dados MySQ
 router.get('/users/:id', async (req, res) => { // filtrando dados do banco de dados MySQL com o ID especifico
     // com sequelize
     const id = req.params.id; 
-    const users = await require('../models/User').findOne({  raw: true, where: { id: id } });
+    const users = await User.findOne({  raw: true, where: { id: id } });
     res.render('usersID', { users });
     /*
     // usando queries
@@ -84,7 +89,7 @@ router.get('/users/:id', async (req, res) => { // filtrando dados do banco de da
 router.get('/users/edit/:id', async (req, res) => { // view do editando dados do banco de dados MySQL com o ID especifico
     // com sequelize
     const id = req.params.id;  
-    const users = await require('../models/User').findOne({  raw: true, where: { id: id } });
+    const users = await User.findOne({  raw: true, where: { id: id } });
     res.render('usersEdit', { users });
     /*
     // usando queries
@@ -114,7 +119,7 @@ router.post('/users/edit', async (req, res) => { // editando dados do banco de d
         email, 
         password,
     }
-    await require('../models/User').update(userData, {  raw: true, where: { id: id } });
+    await User.update(userData, { where: { id: id } });
     res.redirect('/users');
     /*
     // usando queries
@@ -133,7 +138,7 @@ router.post('/users/edit', async (req, res) => { // editando dados do banco de d
 router.post('/users/delete/:id', async (req, res) => { // deletadno dados do banco de dados MySQL com o ID especifico
     // com sequelize
     const id = req.params.id;
-    await require('../models/User').destroy({  raw: true, where: { id: id } });
+    await User.destroy({  where: { id: id } });
     res.redirect('/users');
     /*
     // usando queries
@@ -149,4 +154,4 @@ router.post('/users/delete/:id', async (req, res) => { // deletadno dados do ban
     */
 });
 
-module.exports = router; /// usar module.exports em vez de export {} pois precis exportar o módulo router
+export default router; /// usar module.exports em vez de export {} pois precis exportar o módulo router

@@ -1,11 +1,14 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const path = require('path');
 const port = 5000;
 
-require('./models/User');
-require('./models/Ticket');
+import * as ejs from 'ejs';
 
+import User from './models/User.js';
+import Ticket from './models/Ticket.js';
+import router from './routes/routes.js';
+
+import sequelizeConnection from './database/connection.js';
 // pegar o body
 app.use(
     express.urlencoded({
@@ -14,19 +17,18 @@ app.use(
 );
 app.use(express.json());
 
-app.engine('html', require('ejs').renderFile); // Template Engine  //MUDAR PARA handlebars
+app.engine('html', ejs.renderFile); // Template Engine  //MUDAR PARA handlebars
 app.set('view engine', 'html'); // Template Engine
 
-app.use('/public', express.static(path.join(__dirname, '../../public'))); //conectar com a pasta public
+app.use('/public', express.static('public'));//conectar com a pasta public
 
-const routes = require('./routes/routes');
-app.use('/', routes);
+app.use('/', router);
 
 app.get('/', (req, res) => {
     res.render('index');
 });
 
-require('./database/connection').sync().then(() => { //
+sequelizeConnection.sync().then(() => { //
     app.listen(port,() => {
         console.log("servindo na porta " + port);
     });

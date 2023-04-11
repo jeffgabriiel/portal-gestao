@@ -12,18 +12,19 @@ module.exports = pool;
 */
 
 //conecção usando o sequelize
-const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize( 'travelagency', 'root', 'jeff1238', {
+import { Sequelize } from "sequelize";
+
+const sequelizeConnection = new Sequelize( 'travelagency', 'root', 'jeff1238', { // 'name db', 'user', 'password'
     host: 'localhost',
     dialect: 'mysql'
 });
 
 try{
-    sequelize.authenticate();
+    sequelizeConnection.authenticate();
     console.log('Conectado ao banco de dados com sequelize');
 } catch(err){
     console.log('Error: ', err);
 }
 
-module.exports = sequelize;
+export default sequelizeConnection;

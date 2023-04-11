@@ -1,10 +1,11 @@
 {
+  "type": "module",
   "name": "travel-agency",
   "version": "1.0.0",
   "description": "------------- Agência de viagens -------------",
   "main": "index.js",
   "scripts": {
-    "server": "node ./dist/js/index.js",
+    "server": "nodemon ./dist/js/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "compile": "tsc",
     "watch": "tsc -w",
@@ -38,6 +39,7 @@
     "sequelize": "^6.30.0"
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "lite-server": "^2.6.1",
     "typescript": "^5.0.3"
   }

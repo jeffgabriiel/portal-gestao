@@ -7,26 +7,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const router = require('express').Router();
-const connection = require('../database/connection');
-const ticket = require('../models/Ticket');
-const handlebars = require('handlebars');
-require('express')().use(require('express').urlencoded({
+import '../database/connection.js';
+import Router from 'express';
+const router = Router();
+import express from 'express';
+const app = express();
+import User from '../models/User.js';
+app.use(express.urlencoded({
     extended: true,
 }));
-require('express')().use(require('express').json());
+app.use(express.json());
 router.get('/passagens', (req, res) => {
     res.render('passagens');
 });
 router.get('/register', (req, res) => {
     res.render('register');
 });
-router.post('/register/insertRegister', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.post('/register/insertRegister', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-    yield require('../models/User').create({ name, email, password });
+    yield User.create({ name, email, password });
     res.redirect('/users');
     /* // MySQL direto
     // usando queries
@@ -42,9 +44,9 @@ router.post('/register/insertRegister', (req, res) => __awaiter(this, void 0, vo
     })
     */
 }));
-router.get('/users', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
-    const users = yield require('../models/User').findAll({ raw: true });
+    const users = yield User.findAll({ raw: true });
     res.render('users', { users: users });
     /*
     const read = `SELECT * FROM users`;
@@ -57,10 +59,10 @@ router.get('/users', (req, res) => __awaiter(this, void 0, void 0, function* () 
     });
     */
 }));
-router.get('/users/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.get('/users/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
     const id = req.params.id;
-    const users = yield require('../models/User').findOne({ raw: true, where: { id: id } });
+    const users = yield User.findOne({ raw: true, where: { id: id } });
     res.render('usersID', { users });
     /*
     // usando queries
@@ -76,10 +78,10 @@ router.get('/users/:id', (req, res) => __awaiter(this, void 0, void 0, function*
     });
     */
 }));
-router.get('/users/edit/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.get('/users/edit/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
     const id = req.params.id;
-    const users = yield require('../models/User').findOne({ raw: true, where: { id: id } });
+    const users = yield User.findOne({ raw: true, where: { id: id } });
     res.render('usersEdit', { users });
     /*
     // usando queries
@@ -95,7 +97,7 @@ router.get('/users/edit/:id', (req, res) => __awaiter(this, void 0, void 0, func
     });
     */
 }));
-router.post('/users/edit', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.post('/users/edit', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
     const id = req.body.id;
     const name = req.body.name;
@@ -107,7 +109,7 @@ router.post('/users/edit', (req, res) => __awaiter(this, void 0, void 0, functio
         email,
         password,
     };
-    yield require('../models/User').update(userData, { raw: true, where: { id: id } });
+    yield User.update(userData, { where: { id: id } });
     res.redirect('/users');
     /*
     // usando queries
@@ -122,10 +124,10 @@ router.post('/users/edit', (req, res) => __awaiter(this, void 0, void 0, functio
     });
     */
 }));
-router.post('/users/delete/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.post('/users/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // com sequelize
     const id = req.params.id;
-    yield require('../models/User').destroy({ raw: true, where: { id: id } });
+    yield User.destroy({ where: { id: id } });
     res.redirect('/users');
     /*
     // usando queries
@@ -140,31 +142,4 @@ router.post('/users/delete/:id', (req, res) => __awaiter(this, void 0, void 0, f
     });
     */
 }));
-router.post('/ticket/create', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    // com sequelize
-    const id = req.body.id;
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
-    const userData = {
-        id,
-        name,
-        email,
-        password,
-    };
-    yield require('../models/User').update(userData, { raw: true, where: { id: id } });
-    res.redirect('/users');
-    /*
-    // usando queries
-    const edit = `UPDATE users SET ?? = ?, ?? = ? WHERE ?? = ?`;// ?? = coluna ; ? = dados
-    const data = ['email', email, 'password', password, 'id', id];
-
-    connection.query(edit, data, (err) => {
-        if(err){
-            console.log(err);
-        }
-        res.redirect('/users')
-    });
-    */
-}));
-module.exports = router; /// usar module.exports em vez de export {} pois precis exportar o módulo router
+export default router; /// usar module.exports em vez de export {} pois precis exportar o módulo router

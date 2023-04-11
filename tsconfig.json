@@ -4,7 +4,8 @@
         "target": "ES6", 
         "noEmitOnError": true,
         "moduleResolution":"node",
-        "lib": ["ES6"]
+        "lib": ["ES6"],
+        "esModuleInterop": true,
     }, 
     "include": ["app/**/*", "app/index.ts"]
 }

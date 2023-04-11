@@ -1,18 +1,21 @@
-module.exports = require('../database/connection').define('Ticket', {
+import { DataTypes } from "sequelize";
+
+import sequelizeConnection from "../database/connection.js";
+
+const Ticket = sequelizeConnection.define('Ticket', {
     partida: {
-        type: require('sequelize').STRING,
-        allowNull: false,
-        require: true,
+        type: DataTypes.STRING,
+        allowNull: false
     },
     destino: {
         //constaints
-        type: require('sequelize').STRING,
-        allowNull: false,
-        require: true,
+        type: DataTypes.STRING,
+        allowNull: false
     },
     preco: {
-        type: require('sequelize').STRING,
-        allowNull: false,
-        require: true,
+        type: DataTypes.STRING,
+        allowNull: false
     },
 }).belongsTo(require('./User'));
+
+export default Ticket;
