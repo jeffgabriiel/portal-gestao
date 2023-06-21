@@ -9,6 +9,7 @@ import Ticket from './models/Ticket.js';
 import router from './routes/routes.js';
 
 import sequelizeConnection from './database/connection.js';
+
 // pegar o body
 app.use(
     express.urlencoded({
@@ -17,7 +18,7 @@ app.use(
 );
 app.use(express.json());
 
-app.engine('html', ejs.renderFile); // Template Engine  //MUDAR PARA handlebars
+app.engine('html', ejs.renderFile); // Template Engine
 app.set('view engine', 'html'); // Template Engine
 
 app.use('/public', express.static('public'));//conectar com a pasta public
